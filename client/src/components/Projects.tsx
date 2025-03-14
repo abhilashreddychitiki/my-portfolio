@@ -1,33 +1,8 @@
 import { motion } from "framer-motion";
 import { fadeInUp, staggerContainer, scaleOnHover } from "@/lib/animations";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-
-const projects = [
-  {
-    title: "Project Management Dashboard",
-    description: "A comprehensive project management solution with real-time updates",
-    image: "https://images.unsplash.com/photo-1508873535684-277a3cbcc4e8",
-    link: "#"
-  },
-  {
-    title: "E-commerce Platform",
-    description: "Modern e-commerce solution with advanced filtering and search",
-    image: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40",
-    link: "#"
-  },
-  {
-    title: "Social Media Analytics",
-    description: "Analytics dashboard for social media performance tracking",
-    image: "https://images.unsplash.com/photo-1739514984003-330f7c1d2007",
-    link: "#"
-  },
-  {
-    title: "Fitness Tracking App",
-    description: "Mobile-first fitness tracking application with workout plans",
-    image: "https://images.unsplash.com/photo-1510759395231-72b17d622279",
-    link: "#"
-  }
-];
+import { projectsData } from "@shared/content";
+import { Badge } from "@/components/ui/badge";
 
 export default function Projects() {
   return (
@@ -49,7 +24,7 @@ export default function Projects() {
           className="grid md:grid-cols-2 gap-8"
           variants={staggerContainer}
         >
-          {projects.map((project) => (
+          {projectsData.map((project) => (
             <motion.div
               key={project.title}
               variants={fadeInUp}
@@ -60,17 +35,34 @@ export default function Projects() {
                 whileHover="hover"
                 className="block"
               >
-                <Card>
-                  <CardHeader className="p-0">
+                <Card className="group overflow-hidden transition-all duration-300 hover:shadow-xl">
+                  <CardHeader className="p-0 relative overflow-hidden">
+                    <motion.div
+                      className="absolute inset-0 bg-primary/20 opacity-0 group-hover:opacity-100 transition-opacity z-10"
+                      whileHover={{ scale: 1.1 }}
+                    />
                     <img
                       src={project.image}
                       alt={project.title}
-                      className="w-full h-48 object-cover rounded-t-lg"
+                      className="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-105"
                     />
                   </CardHeader>
                   <CardContent className="p-6">
-                    <CardTitle className="mb-2">{project.title}</CardTitle>
-                    <p className="text-muted-foreground">{project.description}</p>
+                    <CardTitle className="mb-2 group-hover:text-primary transition-colors">
+                      {project.title}
+                    </CardTitle>
+                    <p className="text-muted-foreground mb-4">{project.description}</p>
+                    <div className="flex flex-wrap gap-2">
+                      {project.technologies.map((tech) => (
+                        <Badge 
+                          key={tech} 
+                          variant="secondary"
+                          className="transition-all duration-300 hover:bg-primary hover:text-primary-foreground"
+                        >
+                          {tech}
+                        </Badge>
+                      ))}
+                    </div>
                   </CardContent>
                 </Card>
               </motion.a>
