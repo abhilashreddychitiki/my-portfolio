@@ -1,15 +1,8 @@
 import { motion } from "framer-motion";
 import { fadeInUp, staggerContainer } from "@/lib/animations";
-import { SiReact, SiTypescript, SiNodedotjs, SiTailwindcss, SiPostgresql, SiDocker } from "react-icons/si";
-
-const skills = [
-  { icon: SiReact, name: "React" },
-  { icon: SiTypescript, name: "TypeScript" },
-  { icon: SiNodedotjs, name: "Node.js" },
-  { icon: SiTailwindcss, name: "Tailwind" },
-  { icon: SiPostgresql, name: "PostgreSQL" },
-  { icon: SiDocker, name: "Docker" }
-];
+import { skillsData } from "@shared/content";
+import * as Icons from "react-icons/si";
+import { Card } from "@/components/ui/card";
 
 export default function Skills() {
   return (
@@ -28,19 +21,43 @@ export default function Skills() {
           Technical Skills
         </motion.h2>
         <motion.div 
-          className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8"
+          className="grid grid-cols-2 md:grid-cols-3 gap-8"
           variants={staggerContainer}
         >
-          {skills.map((skill) => (
-            <motion.div
-              key={skill.name}
-              variants={fadeInUp}
-              className="flex flex-col items-center gap-4 p-6 rounded-lg bg-card hover:bg-card/80 transition-colors"
-            >
-              <skill.icon className="w-12 h-12 text-primary" />
-              <span className="font-medium">{skill.name}</span>
-            </motion.div>
-          ))}
+          {skillsData.map((skill) => {
+            const Icon = (Icons as any)[skill.icon];
+            return (
+              <motion.div
+                key={skill.name}
+                variants={fadeInUp}
+                whileHover={{ scale: 1.05 }}
+                className="relative"
+              >
+                <Card className="p-6 h-full bg-gradient-to-br from-card to-card/50 hover:shadow-lg transition-all duration-300">
+                  <div className="flex flex-col items-center gap-4">
+                    <motion.div
+                      whileHover={{ rotate: 360 }}
+                      transition={{ duration: 0.6 }}
+                    >
+                      <Icon className="w-12 h-12 text-primary" />
+                    </motion.div>
+                    <h3 className="font-medium text-lg">{skill.name}</h3>
+                    <div className="w-full bg-muted rounded-full h-2">
+                      <motion.div
+                        className="h-full bg-primary rounded-full"
+                        initial={{ width: 0 }}
+                        whileInView={{ width: `${skill.level}%` }}
+                        transition={{ duration: 1, delay: 0.2 }}
+                      />
+                    </div>
+                    <span className="text-sm text-muted-foreground">
+                      {skill.category}
+                    </span>
+                  </div>
+                </Card>
+              </motion.div>
+            );
+          })}
         </motion.div>
       </motion.div>
     </section>

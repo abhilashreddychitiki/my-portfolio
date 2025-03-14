@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { fadeInUp } from "@/lib/animations";
+import { personalInfo } from "@shared/content";
 
 export default function Hero() {
   return (
@@ -14,13 +15,13 @@ export default function Hero() {
           className="text-4xl sm:text-6xl lg:text-7xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-primary to-primary/60"
           variants={fadeInUp}
         >
-          Creative Developer
+          {personalInfo.title}
         </motion.h1>
         <motion.p 
           className="mt-6 text-xl sm:text-2xl text-muted-foreground max-w-2xl mx-auto"
           variants={fadeInUp}
         >
-          Building beautiful, interactive experiences for the web
+          {personalInfo.subtitle}
         </motion.p>
         <motion.div 
           className="mt-10"

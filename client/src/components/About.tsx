@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { fadeInUp, staggerContainer } from "@/lib/animations";
 import { Card, CardContent } from "@/components/ui/card";
+import { personalInfo } from "@shared/content";
 
 export default function About() {
   return (
@@ -17,7 +18,7 @@ export default function About() {
             <Card>
               <CardContent className="p-0">
                 <img
-                  src="https://images.unsplash.com/photo-1573496527892-904f897eb744"
+                  src={personalInfo.profileImage}
                   alt="Professional headshot"
                   className="w-full h-full object-cover rounded-lg"
                 />
@@ -35,14 +36,11 @@ export default function About() {
               variants={fadeInUp}
               className="text-lg text-muted-foreground mb-6"
             >
-              I'm a passionate full-stack developer with a love for creating
-              beautiful and functional web applications. With expertise in modern
-              web technologies, I bring ideas to life through clean code and
-              thoughtful design.
+              {personalInfo.about}
             </motion.p>
             <motion.div variants={fadeInUp}>
               <a
-                href="/resume.pdf"
+                href={personalInfo.resumeUrl}
                 className="inline-flex items-center gap-2 text-primary hover:text-primary/80 font-medium"
                 download
               >
