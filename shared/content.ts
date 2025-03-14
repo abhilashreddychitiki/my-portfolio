@@ -14,9 +14,13 @@ export const skillsData = [
   { name: "React", level: 90, icon: "SiReact", category: "Frontend" },
   { name: "TypeScript", level: 85, icon: "SiTypescript", category: "Language" },
   { name: "Node.js", level: 80, icon: "SiNodedotjs", category: "Backend" },
-  { name: "Tailwind", level: 95, icon: "SiTailwindcss", category: "Styling" },
+  { name: "Next.js", level: 85, icon: "SiNextdotjs", category: "Frontend" },
   { name: "PostgreSQL", level: 75, icon: "SiPostgresql", category: "Database" },
+  { name: "MongoDB", level: 70, icon: "SiMongodb", category: "Database" },
+  { name: "GraphQL", level: 75, icon: "SiGraphql", category: "Backend" },
   { name: "Docker", level: 70, icon: "SiDocker", category: "DevOps" },
+  { name: "AWS", level: 65, icon: "SiAmazonaws", category: "DevOps" },
+  { name: "Tailwind", level: 95, icon: "SiTailwindcss", category: "Frontend" },
 ];
 
 export const projectsData = [
