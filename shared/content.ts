@@ -23,6 +23,45 @@ export const skillsData = [
   { name: "Tailwind", level: 95, icon: "SiTailwindcss", category: "Frontend" },
 ];
 
+export const experienceData = [
+  {
+    title: "Senior Frontend Developer",
+    company: "Tech Innovations Inc.",
+    companyIcon: "SiGoogle",
+    duration: "2022 - Present",
+    responsibilities: [
+      "Led the development of a high-performance React application serving 1M+ users",
+      "Implemented modern CI/CD practices reducing deployment time by 40%",
+      "Mentored junior developers and conducted code reviews"
+    ],
+    technologies: ["React", "TypeScript", "Next.js", "AWS"]
+  },
+  {
+    title: "Full Stack Developer",
+    company: "Digital Solutions Ltd",
+    companyIcon: "SiMicrosoft",
+    duration: "2020 - 2022",
+    responsibilities: [
+      "Developed and maintained multiple client projects using React and Node.js",
+      "Optimized database queries improving application performance by 30%",
+      "Implemented real-time features using WebSocket"
+    ],
+    technologies: ["React", "Node.js", "PostgreSQL", "WebSocket"]
+  },
+  {
+    title: "Software Engineer",
+    company: "StartUp Hub",
+    companyIcon: "SiAmazon",
+    duration: "2018 - 2020",
+    responsibilities: [
+      "Built RESTful APIs using Node.js and Express",
+      "Developed responsive web applications using React",
+      "Collaborated with UI/UX team for better user experience"
+    ],
+    technologies: ["JavaScript", "React", "Node.js", "MongoDB"]
+  }
+];
+
 export const projectsData = [
   {
     title: "Project Management Dashboard",
