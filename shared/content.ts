@@ -23,6 +23,10 @@ export const skillsData = [
   { name: "Docker", level: 70, icon: "SiDocker", category: "DevOps" },
   { name: "AWS", level: 65, icon: "SiAmazonaws", category: "DevOps" },
   { name: "Tailwind", level: 95, icon: "SiTailwindcss", category: "Frontend" },
+  // Example of adding Python skill
+  { name: "Python", level: 85, icon: "SiPython", category: "Language" },
+  // Example of adding Vue.js skill
+  { name: "Vue.js", level: 80, icon: "SiVuedotjs", category: "Frontend" }
 ];
 
 export const experienceData = [
