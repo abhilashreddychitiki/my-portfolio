@@ -4,11 +4,7 @@ import { Menu, Moon, Sun } from "lucide-react";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { useTheme } from "@/hooks/use-theme";
-import {
-  Sheet,
-  SheetContent,
-  SheetTrigger,
-} from "@/components/ui/sheet";
+import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 
 const navItems = [
   { name: "Home", href: "#" },
@@ -37,7 +33,7 @@ export default function Navbar() {
   };
 
   return (
-    <motion.nav 
+    <motion.nav
       className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-sm border-b"
       initial={{ y: -100 }}
       animate={{ y: 0 }}
@@ -51,7 +47,7 @@ export default function Navbar() {
             className="text-xl font-bold text-primary"
             whileHover={{ scale: 1.05 }}
           >
-            Portfolio
+            ABHILASH REDDY
           </motion.a>
 
           <div className="hidden md:flex items-center space-x-4">

@@ -2,10 +2,16 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useState, useEffect } from "react";
 import { fadeInUp, staggerContainer } from "@/lib/animations";
 import { skillsData } from "@shared/content";
-import * as Icons from "react-icons/si";
+import * as SiIcons from "react-icons/si"; // Simple Icons (Si)
+import * as FaIcons from "react-icons/fa"; // FontAwesome (Fa)
+import * as MdIcons from "react-icons/md"; // Material Design (Md)
+import * as BsIcons from "react-icons/bs"; // Bootstrap Icons (Bs)
+
 import { Button } from "@/components/ui/button";
 
-const uniqueCategories = Array.from(new Set(skillsData.map(skill => skill.category)));
+const uniqueCategories = Array.from(
+  new Set(skillsData.map((skill) => skill.category))
+);
 const categories = ["All", ...uniqueCategories];
 
 // Function to generate random positions without overlap
@@ -14,16 +20,18 @@ const generatePosition = (index: number, total: number) => {
   const radius = Math.min(window.innerWidth, 800) * 0.3;
   return {
     x: Math.cos(angle) * radius + radius * 0.3 * (Math.random() - 0.5),
-    y: Math.sin(angle) * radius + radius * 0.3 * (Math.random() - 0.5)
+    y: Math.sin(angle) * radius + radius * 0.3 * (Math.random() - 0.5),
   };
 };
 
 export default function Skills() {
   const [selectedCategory, setSelectedCategory] = useState("All");
-  const [positions, setPositions] = useState<{ [key: string]: { x: number; y: number } }>({});
+  const [positions, setPositions] = useState<{
+    [key: string]: { x: number; y: number };
+  }>({});
 
-  const filteredSkills = skillsData.filter(skill => 
-    selectedCategory === "All" || skill.category === selectedCategory
+  const filteredSkills = skillsData.filter(
+    (skill) => selectedCategory === "All" || skill.category === selectedCategory
   );
 
   // Initialize positions when category changes
@@ -45,14 +53,17 @@ export default function Skills() {
         whileInView="animate"
         viewport={{ once: true }}
       >
-        <motion.h2 
+        <motion.h2
           variants={fadeInUp}
           className="text-3xl font-bold text-center mb-12"
         >
           Technical Skills
         </motion.h2>
 
-        <motion.div variants={fadeInUp} className="mb-12 flex justify-center gap-2 flex-wrap">
+        <motion.div
+          variants={fadeInUp}
+          className="mb-12 flex justify-center gap-2 flex-wrap"
+        >
           {categories.map((category) => (
             <Button
               key={category}
@@ -68,7 +79,12 @@ export default function Skills() {
         <div className="relative h-[500px] bg-muted/30 dark:bg-muted/10 rounded-xl p-8 overflow-hidden">
           <AnimatePresence mode="popLayout">
             {filteredSkills.map((skill) => {
-              const IconComponent = Icons[skill.icon as keyof typeof Icons];
+              const IconComponent =
+                SiIcons[skill.icon as keyof typeof SiIcons] ||
+                FaIcons[skill.icon as keyof typeof FaIcons] ||
+                MdIcons[skill.icon as keyof typeof MdIcons] ||
+                BsIcons[skill.icon as keyof typeof BsIcons];
+
               const position = positions[skill.name] || { x: 0, y: 0 };
 
               return IconComponent ? (
@@ -76,34 +92,34 @@ export default function Skills() {
                   key={skill.name}
                   className="absolute"
                   initial={{ scale: 0, opacity: 0 }}
-                  animate={{ 
-                    scale: 1, 
+                  animate={{
+                    scale: 1,
                     opacity: 1,
                     x: position.x,
-                    y: position.y
+                    y: position.y,
                   }}
                   exit={{ scale: 0, opacity: 0 }}
-                  transition={{ 
+                  transition={{
                     type: "spring",
                     stiffness: 200,
-                    damping: 20
+                    damping: 20,
                   }}
                   drag
                   dragConstraints={{
                     top: -100,
                     left: -100,
                     right: 100,
-                    bottom: 100
+                    bottom: 100,
                   }}
                   dragElastic={0.3}
                   dragTransition={{ bounceStiffness: 300, bounceDamping: 20 }}
                   whileHover={{ scale: 1.2 }}
                   whileDrag={{ scale: 1.1 }}
                   style={{
-                    position: 'absolute',
-                    left: '50%',
-                    top: '50%',
-                    transform: 'translate(-50%, -50%)',
+                    position: "absolute",
+                    left: "50%",
+                    top: "50%",
+                    transform: "translate(-50%, -50%)",
                   }}
                 >
                   <div className="w-20 h-20 flex flex-col items-center justify-center bg-background dark:bg-muted rounded-full shadow-lg cursor-grab active:cursor-grabbing">
