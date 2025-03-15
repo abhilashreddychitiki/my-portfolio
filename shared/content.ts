@@ -8,6 +8,8 @@ export const personalInfo = {
   thoughtful design.`,
   resumeUrl: "/resume.pdf",
   profileImage: "https://images.unsplash.com/photo-1573496527892-904f897eb744",
+  github: "https://github.com/johndoe",
+  linkedin: "https://linkedin.com/in/johndoe"
 };
 
 export const skillsData = [

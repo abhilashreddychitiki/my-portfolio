@@ -1,5 +1,13 @@
 import { motion } from "framer-motion";
 import { Link } from "wouter";
+import { Menu } from "lucide-react";
+import { useState } from "react";
+import { Button } from "@/components/ui/button";
+import {
+  Sheet,
+  SheetContent,
+  SheetTrigger,
+} from "@/components/ui/sheet";
 
 const navItems = [
   { name: "Home", href: "#" },
@@ -11,6 +19,8 @@ const navItems = [
 ];
 
 export default function Navbar() {
+  const [isOpen, setIsOpen] = useState(false);
+
   // Add smooth scroll behavior
   const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault();
@@ -21,6 +31,7 @@ export default function Navbar() {
     }
     const element = document.querySelector(href);
     element?.scrollIntoView({ behavior: "smooth" });
+    setIsOpen(false);
   };
 
   return (
@@ -40,7 +51,7 @@ export default function Navbar() {
           >
             Portfolio
           </motion.a>
-          
+
           <div className="hidden md:flex items-center space-x-4">
             {navItems.map((item) => (
               <motion.a
@@ -54,6 +65,32 @@ export default function Navbar() {
                 {item.name}
               </motion.a>
             ))}
+          </div>
+
+          {/* Mobile menu */}
+          <div className="md:hidden">
+            <Sheet open={isOpen} onOpenChange={setIsOpen}>
+              <SheetTrigger asChild>
+                <Button variant="ghost" size="icon">
+                  <Menu className="h-6 w-6" />
+                  <span className="sr-only">Open menu</span>
+                </Button>
+              </SheetTrigger>
+              <SheetContent side="right" className="w-[240px] sm:w-[300px]">
+                <nav className="flex flex-col gap-4 mt-8">
+                  {navItems.map((item) => (
+                    <a
+                      key={item.name}
+                      href={item.href}
+                      onClick={handleClick}
+                      className="text-muted-foreground hover:text-foreground px-3 py-2 rounded-md text-sm font-medium"
+                    >
+                      {item.name}
+                    </a>
+                  ))}
+                </nav>
+              </SheetContent>
+            </Sheet>
           </div>
         </div>
       </div>
